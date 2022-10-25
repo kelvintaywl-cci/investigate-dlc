@@ -15,6 +15,9 @@ jobs:
     machine:
       image: "ubuntu-2004:202107-02"
       docker_layer_caching: true
+    environment:
+      AWS_ECR_REGISTRY_ID: '123456789012'
+      AWS_REGION: 'ap-northeast-1'
     steps:
       - checkout
       - diagnose
