@@ -116,7 +116,7 @@ orbs:
 parameters:
   use-dlc:
     type: boolean
-    default: false
+    default: true
 
 commands:
   diagnose:
