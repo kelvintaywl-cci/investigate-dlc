@@ -378,6 +378,8 @@ orbs:
                             set -- "$@" ${PARAM_EXTRA_BUILD_ARGS}
                           fi
 
+                          echo "tags: ${docker_tag_args}"
+
                           if [ "${PARAM_PUBLIC_REGISTRY}" == "1" ]; then
                             docker buildx build \
                               -f "${PARAM_PATH}"/"${PARAM_DOCKERFILE}" \
