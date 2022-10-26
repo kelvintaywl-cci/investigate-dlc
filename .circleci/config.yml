@@ -156,5 +156,5 @@ jobs:
 workflows:
   main:
     jobs:
-      # - build_image
-      - clean_docker_image_cache
+      - build_image
+      # - clean_docker_image_cache
