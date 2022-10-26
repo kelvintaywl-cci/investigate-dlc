@@ -126,7 +126,9 @@ commands:
       - run: docker system info
   clean-docker:
     steps:
-      - run: sudo rm -rf /var/lib/docker
+      # DLC image caches and everything looks to be located here
+      # we see this mounted to /var/lib/docker
+      - run: sudo rm -rf /tmp/.dlc.img
 executors:
   main:
     machine:
@@ -156,5 +158,7 @@ jobs:
 workflows:
   main:
     jobs:
-      # - build_image
+      - build_image:
+          requires:
+            - clean_docker_image_cache
       - clean_docker_image_cache
