@@ -126,7 +126,7 @@ commands:
       - run: docker system info
   clean-docker:
     steps:
-      - run: sudo rm -rf /var/lib/docker/*
+      - run: sudo rm -rf /var/lib/docker
 executors:
   main:
     machine:
@@ -156,5 +156,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - build_image
-      # - clean_docker_image_cache
+      # - build_image
+      - clean_docker_image_cache
