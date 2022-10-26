@@ -124,12 +124,18 @@ commands:
       - run: docker version
       - run: docker info
       - run: docker system info
-
-jobs:
-  build_image:
+  clean-docker:
+    steps:
+      - run: sudo rm -rf /var/lib/docker/*
+executors:
+  main:
     machine:
       image: "ubuntu-2004:202107-02"
       docker_layer_caching: << pipeline.parameters.use-dlc >>
+
+jobs:
+  build_image:
+    executor: main
     environment:
       AWS_ECR_REGISTRY_ID: '123456789012'
       AWS_REGION: 'ap-northeast-1'
@@ -142,8 +148,13 @@ jobs:
           tag: latest
           extra-build-args: |
             --progress plain
+  clean_docker_image_cache:
+    executor: main
+    steps:
+      - clean-docker
 
 workflows:
   main:
     jobs:
-      - build_image
+      # - build_image
+      - clean_docker_image_cache
