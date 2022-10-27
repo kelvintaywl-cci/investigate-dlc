@@ -145,7 +145,7 @@ jobs:
       - checkout
       - diagnose
       - aws-ecr/build-image:
-          platform: linux/amd64,linux/arm64
+          platform: linux/amd64
           repo: kelvintaywlcircleci/fancy-nginx-xplatform
           tag: latest
           extra-build-args: |
